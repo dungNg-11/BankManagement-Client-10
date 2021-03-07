@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8" />
+<title>Show all Deposit</title>
+<link rel="stylesheet"
+	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<div>
+	<div class="bg-dark mb-10" >
+	<ul class="nav grey lighten-4 py-2">
+	  <li class="nav-item">
+	    <a class="nav-link active" th:href="@{/}" id="ManaCustomer" style="color:white"><i class="fa fa-home">Home</i></a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link " th:href="@{/customers/show-all-customer}" id="ManaCustomer" style="color:white">Customer Management</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" th:href="@{/users/show-all-user}" id="ManaUser" style="color:white">User Management</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" th:href="@{/credits/show-all-credit}" id="CreditAccount" style="color:white">Credit Account Management</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" th:href="@{/deposits/show-all-deposit}" id="DepositAccount" style="color:white">Deposit Account Management</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" th:href="@{/chuyenkhoans/show-all-giao-dich}" id="DepositAccount" style="color:white">Deal Management</a>
+	  </li>
+	</ul>
+	</div>
+	
+		<div align="center">
+			<h1>Deposit Account Management</h1>
+		</div>
+		<div  class="d-flex justify-content-between m-4">
+		<div>
+			<form class="d-flex " method="GET" th:action="@{/deposits/search-id}">
+				<label class=" m-0 align-bottom" for="id">Id deposit account: </label>
+				<input class="form-control m-1" type="text" name="id" />
+				<input class="btn btn-primary m-1" type="submit" value="Find" />
+		    </form>
+		</div>
+		<div>
+			<a class="btn btn-info" th:href="@{/deposits/infor}" id="another">Add Deposit Account</a>
+		</div>
+		</div>
+		
+	
+	<form th:action="@{/deposits/show-all-deposit}" method="get" th:object="${listDeposit}">
+		<div class="card">
+		  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Deposit Account Table</h3>
+		  <div class="card-body">
+		    <div id="table" class="table-editable">
+		      <table class="table table-bordered table-responsive-md table-striped text-center">
+		        <thead>
+				<tr>
+					<th class="text-center">ID</th>
+					<th class="text-center">IDAccount</th>
+					<th class="text-center">TypeAccount</th>
+					<th class="text-center">Balance</th>
+					<th class="text-center">interestRate</th>
+					<th class="text-center">Balance min</th>
+					<th class="text-center">Customer ID</th>
+					<th class="text-center">User ID</th>
+					<th class="text-center">Edit</th>
+					<th class="text-center">Delete</th>
+				</tr>
+				</thead>
+				<tr th:each="dep : ${listDeposit}">
+					<td class="pt-3-half" contenteditable="true" th:text="${dep.id}"></td>
+					<td class="pt-3-half" contenteditable="true" th:text="${dep.idAccount}"></td>
+					<td class="pt-3-half" contenteditable="true" th:text="${dep.typeAccount}"></td>
+					<td class="pt-3-half" contenteditable="true" th:text="${dep.balance}"></td>
+					<td class="pt-3-half" contenteditable="true" th:text="${dep.interestRate}"></td>
+					<td class="pt-3-half" contenteditable="true" th:text="${dep.balanceMin}"></td>
+					<td class="pt-3-half" contenteditable="true" th:text="${dep.customer.id}"></td>
+					<td class="pt-3-half" contenteditable="true" th:text="${dep.user.id}"></td>
+					
+					<td ><a class="btn btn-primary" th:value="${dep.id}" th:href="@{'/deposits/show-deposit-by-id?id=' + ${dep.id}}">Edit</a></td>
+					<td><a class="btn btn-danger" th:value="${dep.id}" th:href="@{'/deposits/delete-deposit/' + ${dep.id}}">Delete</a></td>
+				</tr>
+			</table>
+		</div>
+		</div>
+		</div>
+		
+	</form>
+	
+	
+</body>
+
+</html>

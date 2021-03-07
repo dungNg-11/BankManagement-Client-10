@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Edit Customer</title>
+<link rel="stylesheet" th:href="@{/styles.css}" />
+<link rel="stylesheet" th:href="@{/styles.css}" />
+    <link rel="stylesheet"
+		href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+	<link rel="stylesheet"
+		href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </head>
+<body>
+<div>
+	<div>
+	<ul class="nav grey lighten-4 py-4">
+	  <li class="nav-item">
+	    <a class="nav-link active" th:href="@{/}" id="ManaCustomer"><i class="fa fa-home">Home</i></a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link " th:href="@{/customers/show-all-customer}" id="ManaCustomer">Customer Management</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" th:href="@{/users/show-all-user}" id="ManaUser">User Management</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link " th:href="@{/accounts}" id="ManaAccount">Bank Account Management</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" th:href="@{/credits/show-all-credit}" id="CreditAccount">Credit Account Management</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" th:href="@{/deposits/show-all-deposit}" id="DepositAccount">Deposit Account Management</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" th:href="@{/chuyenkhoans/show-all-giao-dich}" id="DepositAccount" style="color:white">Deal Management</a>
+	  </li>
+	</ul>
+	</div >
+	<form class="border border-light p-5" style="margin: auto; width: 50%; height: 50%;" method="Post" th:action="@{/customers/edit-customer}" th:object="${customerById}">
+      <h1>Customer Information!</h1>
+      <input class="form-control m-1" type="hidden" name="put_id" th:value = "${customerById.id}"/>
+      <label for="name">Name: </label>
+      <input class="form-control m-1" type="text" name="name" th:value = "${customerById.name}"/>
+      <br/>
+      <label for="cmt">CMT: </label>
+      <input class="form-control m-1" type="text" name = "cmt" th:value="${customerById.cmt}"/>
+      <br/>
+      <label for="date">Date: </label>
+      <input class="form-control m-1" type="text" name = "dateOfBirth" th:value="${#dates.format(customerById.dateOfBirth, 'MM/dd/yyyy')}"/>
+      <br/>
+      <label for="address">Address: </label>
+      <input class="form-control m-1" type="text"  name = "address" th:value = "${customerById.address}"/>
+      <br/>
+      <div class="col text-center mt-2">
+          <input class="btn btn-primary " type="submit" value="Edit"/>
+      </div>
+    </form>
+</div>
+</body>
+</html>
